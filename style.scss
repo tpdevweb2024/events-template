@@ -1,7 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap");
 
 $linear: linear-gradient(
   67deg,
+  #f79533,
+  #f37055,
+  #ef4e7b,
+  #a166ab,
+  #5073b8,
+  #1098ad,
+  #07b39b,
+  #6fba82
+);
+$linear-mobile: linear-gradient(
+  95deg,
   #f79533,
   #f37055,
   #ef4e7b,
@@ -63,30 +74,98 @@ header {
   // dégradé orange avec angle
   background: $linear;
   color: white;
+  @media screen and (max-width: 1200px) {
+  }
 
   .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 60px;
+    position: relative;
 
     @include marginAuto();
+    @media screen and (max-width: 1200px) {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .logo {
       font-size: 24px;
       font-weight: 700;
+
+      @media screen and (max-width: 1200px) {
+        text-align: left;
+      }
+    }
+
+    .hamburger {
+      @media screen and (min-width: 1200px) {
+        display: none;
+      }
+      @media screen and (max-width: 1200px) {
+        justify-self: end;
+        z-index: 2000;
+        position: fixed;
+        padding-right: 1rem;
+      }
+      span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin-bottom: 5px;
+        background: white;
+        border-radius: 5px;
+      }
     }
 
     .menu {
+      @media screen and (max-width: 1200px) {
+        padding: 2rem 1rem;
+        display: none;
+        &.active {
+          // add a transition slide
+          display: flex;
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: $linear;
+          z-index: 1000;
+        }
+      }
+
       nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+
         ul {
           display: flex;
           list-style: none;
+
+          @media screen and (max-width: 1200px) {
+            flex-direction: column;
+            gap: 1rem;
+          }
+
           li {
             padding: 0 10px;
             a {
               color: white;
               text-decoration: none;
+              font-weight: 300;
+              @media screen and (max-width: 1200px) {
+                font-size: 2rem;
+              }
+
+              &.active {
+                font-weight: bold;
+              }
 
               &:hover {
                 text-decoration: underline;
@@ -103,11 +182,18 @@ main {
   .container {
     @include marginAuto;
     padding: 2rem 0;
+    @media screen and (max-width: 1200px) {
+      padding: 1rem;
+    }
 
     .shortcuts {
       display: flex;
       justify-content: start;
       gap: 1rem;
+      @media screen and (max-width: 1200px) {
+        padding: 1rem;
+        flex-direction: column;
+      }
 
       a {
         &.shortcut {
@@ -129,9 +215,13 @@ main {
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       padding: 2rem 0;
+      @media screen and (max-width: 1200px) {
+        padding: 1rem;
+        grid-template-columns: repeat(1, 1fr);
+      }
 
       .card {
         display: flex;
